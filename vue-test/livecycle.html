@@ -5,5 +5,53 @@
 		<title></title>
 	</head>
 	<body>
+		<div id="app">
+			<div>{{msg}}</div>
+			<button @click="change">更新数据</button>
+			<button @click="destroy">销毁</button>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'Vue的生命周期'
+				},
+				methods:{
+					change:function(){
+						this.msg = '声明周期'
+					},
+					destroy:function(){
+						console.log(this);
+						this.$destroy(); //销毁当前Vue实例，即this指向的Vue
+					}
+				},
+				beforeCreate:function(){
+					console.log('beforeCreate')
+				},
+				created:function(){
+					console.log('created')
+				},
+				beforeMount:function(){
+					console.log('beforeMount')
+				},
+				mounted:function(){
+					console.log('mounted')
+				},
+				beforeUpdate:function(){
+					console.log('beforeUpdate')
+				},
+				updated:function(){
+					console.log('updated')
+				},
+				beforeDestroy:function(){
+					console.log('beforeDestroy')
+				},
+				destroyed:function(){
+					console.log('destroyed')
+				}
+				
+			})
+		</script>
 	</body>
 </html>
