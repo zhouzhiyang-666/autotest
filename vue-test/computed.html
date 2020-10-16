@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				{{msg}}
+			</div>
+			<div>{{reverseString}}</div>
+			<div>{{reverseString}}</div>
+			
+			<div>{{reverseMsg()}}</div>
+			<div>{{reverseMsg()}}</div>
+			<div>{{addnum}}</div>
+			<div>{{addnum}}</div>
+			<div>{{addnum1()}}</div>
+			<div>{{addnum1()}}</div>
+			<script type="text/javascript" src="js/vue.js"></script>
+			<script type="text/javascript">
+				// 计算属性
+				var vm = new Vue({
+					el:'#app',
+					data:{
+						msg:'hellssso',
+						num:100
+					},
+					methods:{
+						reverseMsg:function(){
+							console.log('methods');
+							return this.msg.split('').reverse().join('');
+						},
+						addnum1:function(){
+							var sum = 0;
+							console.log("addmethod");
+							for(var i = 1; i<= this.num; i++){
+								sum += i;
+							}
+							return sum;
+						}
+					}
+					,
+					computed:{
+						reverseString:function(){
+							console.log('computed');
+							return this.msg.split('').reverse().join('');
+						},
+						addnum:function(){
+							var sum = 0;
+							console.log("addcomputed");
+							for(var i = 1; i<= this.num; i++){
+								sum += i;
+							}
+							return sum;
+						}
+					}
+				});
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Documeng</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-color='msg' />
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			// 自定义全局指令
+			// Vue.directive('color',{
+			// 	bind:function(el,binding){
+			// 		el.style.backgroundColor = binding.value.color;
+			// 		console.log(binding)
+			// 	}
+			// });
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					msg:{
+						color:'red'
+					}
+				},
+				methods:{
+					handle:function(){
+						
+					}
+				},
+				// 自定义局部指令
+				directives:{
+					color:{
+						bind:function(el,binding){
+							el.style.backgroundColor = binding.value.color;
+							console.log(binding)
+						}
+					}
+				},
+				computed:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<a>用户名：</a>
+			<input type="text" v-model.lazy="username"/>
+			<a>{{message}}</a>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				监听器
+				1、采用侦听器监听用户名的变化
+				2、调用后台接口验证
+				3、根据验证的结果调整提示信息
+			*/
+			var watchvm = new Vue({
+				el:'#app',
+				data:{
+					username:'',
+					message:''
+				},
+				methods:{
+					checkName:function(uname){
+						//模拟接口调用
+						var that = this;
+						setTimeout(function(){
+							if(uname == 'admin'){
+								that.message='用户名已存在';
+							}else{
+								that.message='用户名可用';
+							}
+						},2000);
+					}
+				},
+				watch:{
+					username:function(newval,oldval){
+						this.checkName(newval);
+						this.message= '正在验证。。。';
+						console.log(this);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
