@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<hello-world :pstr='title' :pnum='45' :pboo='true' :parr='foodlist' :pobj='pobj'>父组件内容</hello-world>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				props数据类型
+			*/
+		   Vue.component('HelloWorld',{
+			   props:['pstr','pnum','pboo','parr','pobj'],
+			   template:`
+			   <div>
+					父组件内容
+					<template>
+						子组件内容
+					   <div>{{pstr}}</div>
+					   <div>{{typeof pnum}}</div>
+					   <div>{{pboo}}</div>
+					   <ul>
+							<li v-for='item in parr' :key='item.id' >{{item.name}}</li>
+					   </ul>
+					   <a>{{pobj.name + ' ' + pobj.time + ' '+pobj.action}}</a>
+				   </template>
+			   </div>
+			   `
+		   })
+		    var filtervm = new Vue({
+			   el:'#app',
+			   data:{
+				   foodlist:[
+					   {
+						   id:0,
+						   name:'苹果'
+					   },
+					   {
+						   id:1,
+						   name:'雪梨'
+					   },
+					   {
+						   id:2,
+						   name:'香蕉'
+					   },
+					   {
+						   id:3,
+						   name:'草莓'
+					   }
+				   ],
+				   pobj:{
+					   name:'黄同学',
+					   time:'早上',
+					   action:'没吃饭'
+				   }
+			   }
+		   })
+		</script>
+	</body>
+</html>
