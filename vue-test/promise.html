@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var p = new Promise(function(resolve,reject){
+				setTimeout(function(){
+					var flag = false;
+					if(flag){
+						//正常情况
+						resolve('hello');
+					}else{
+						reject('error');
+					}
+				},100)
+			});
+			p.then(function(data){
+				console.log(data);
+			},function(info){
+				console.log(info);
+			})
+		</script>
+	</body>
+</html>
