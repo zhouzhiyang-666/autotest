@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.current{
+			color:orange;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<food-list :list='foodlist'>
+				<template slot-scope='slotProps'>  
+				<!-- slot-scope绑定子组件中的绑定的属性(:info='item'),属性值可以自己起，用来获取子组件传过来的值。 -->
+					<strong v-if="slotProps.info.id==2" class="current">{{slotProps.info.name}}</strong>
+					<span v-else>{{slotProps.info.name}}</span>
+				</template>
+			</food-list>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				作用域插槽
+			*/
+		   
+		   Vue.component('food-list',{
+			   props:['list'],
+			   template:`
+				<div>
+					<li v-for='item in list' :key='item.id'>
+						<slot :info='item'>{{item.name}}</slot>
+					</li>
+				</div>
+			    `
+			})
+		   
+		    var filtervm = new Vue({
+			   el:'#app',
+			   data:{
+				   foodlist:[
+					   {
+						   id:0,
+						   name:'香蕉'
+					   },
+					   {
+						   id:1,
+						   name:'苹果'
+					   },
+					   {
+						   id:2,
+						   name:'西瓜'
+					   }
+				   ]
+			   }
+		   })
+		</script>
+	</body>
+</html>
