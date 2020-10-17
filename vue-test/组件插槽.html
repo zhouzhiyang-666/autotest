@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<alter-box>有BUG发生</alter-box>
+			<alter-box>有一个警告</alter-box>
+			<alter-box>有一个致命错误</alter-box>
+			<alter-box></alter-box>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				组件插槽
+			*/
+		   
+		   Vue.component('alter-box',{
+			   template:`
+				<div>
+					<strong>ERROR:</strong>
+					<slot>默认内容</slot>
+				</div>
+			    `
+			})
+		   
+		    var filtervm = new Vue({
+			   el:'#app',
+			   data:{
+				   parr:['yes','ok']
+			   }
+		   })
+		</script>
+	</body>
+</html>
