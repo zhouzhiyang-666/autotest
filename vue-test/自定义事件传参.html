@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		#app{
+			font-size: ;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<div :style="{fontSize : fontSize+'px'}">{{msg + ' '+fontSize}}</div>
+			<hello-world :parr='parr' @enlarge-text='handle' @reduce-text='handle2'>父组件内容</hello-world>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				子传父
+				props传值，单向数据流
+			*/
+		   Vue.component('HelloWorld',{
+			   props:['parr'],
+			   template:`
+			   <div>
+			   <ul>
+					<li :key='item.id' v-for='(item,index) in parr'>{{item}}</li>
+			   </ul>
+					<button @click="parr.push('lemo');">点击</button><br>
+					<button @click="$emit('enlarge-text')">扩大父组件字体大小</button><br>
+					<button @click="$emit('reduce-text')">扩小父组件字体大小</button>
+			   </div>
+			   `
+		   })
+		    var filtervm = new Vue({
+			   el:'#app',
+			   data:{
+				   parr:['yes','ok'],
+				   fontSize:10,
+				   msg:'halo'
+			   },
+			   methods:{
+				   handle:function(){
+					   //扩大字体大小
+					   this.fontSize += 5;
+				   },
+				   handle2:function(){
+					   if(this.fontSize == 0){
+						   this.fontSize = 0;
+					   }else{
+						   this.fontSize -=5;
+					   }
+				   }
+			   }
+		   })
+		</script>
+	</body>
+</html>
