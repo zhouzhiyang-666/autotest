@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div>父组件</div>
+			<div><button @click="handle">销毁事件</button></div>
+			<data1-component></data1-component>
+			<data2-component></data2-component>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				非父子组件传参(兄弟组件传参)
+				1.建立事件中心
+				2.添加和销毁自定义事件
+				3.触发事件
+			*/
+		   //提供事件中心
+		   var eventcenter = new Vue();
+		   
+		   Vue.component('data1-component',{
+			   data:function(){
+				   return{
+					   num:0
+				   }
+			   },
+			   template:`
+				<div>
+					<p>组件1数据:{{num}}</p>
+					<button @click="handle">点击</button>
+				</div>
+			    `,
+			    methods:{
+				   handle:function(){
+					   //触发兄弟组件的事件
+					    eventcenter.$emit('data2-event',3);
+				   }
+				},
+				mounted:function(){
+					//监听事件
+					// console.log(this.$el.childNodes);
+					eventcenter.$on('data1-event',(val)=>{
+						this.num += val;
+					})
+				}
+			})
+			Vue.component('data2-component',{
+			   data:function(){
+				   return{
+					   num:0
+				   }
+			   },
+			   template:`
+				<div>
+					<p>组件2数据:{{num}}</p>
+					<button @click="handle">点击</button>
+				</div>
+				`,
+				methods:{
+				   handle:function(){
+						eventcenter.$emit('data1-event',6);   
+				   }
+				},
+				mounted:function(){
+					//监听事件
+					eventcenter.$on('data2-event',(val)=>{
+						this.num += val;
+					})
+				}
+			})
+		   
+		    var filtervm = new Vue({
+			   el:'#app',
+			   data:{
+				   parr:['yes','ok']
+			   },
+			   methods:{
+				   handle:function(){
+					   //销毁事件
+					   eventcenter.$off('data1-event');
+					   eventcenter.$off('data2-event');
+				   }
+			   }
+		   })
+		</script>
+	</body>
+</html>
