@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>fetch用法</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+				Fetch API 基本用法
+			*/
+		   fetch('http://localhost:3000/fetchdata').then(function(data){
+			   return data.text();   //返回的是一个Promise对象
+		   }).then(function(data){
+			   console.log(data);   //拿到真实数据
+		   })
+		</script>
+	</body>
+</html>
