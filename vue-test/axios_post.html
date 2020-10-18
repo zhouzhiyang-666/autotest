@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>axios运用</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/axios.js"></script>
+		<script type="text/javascript">
+			// axios.post('http://localhost:3000/axios',{
+			// 		uname:'zhouzhiyang',
+			// 		pwd:66666666
+			// })
+			// .then(ret=>{
+			// 	console.log(ret.data);
+			// })
+			const params = new URLSearchParams();
+			params.append('uname','zhouzhiyang');
+			params.append('pwd',55555);
+			axios.post('http://localhost:3000/axios',params)
+			.then(ret=>{
+				console.log(ret.data);
+			})
+		</script>
+	</body>
+</html>
