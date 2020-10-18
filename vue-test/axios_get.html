@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>axios运用</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/axios.js"></script>
+		<script type="text/javascript">
+			//传统URL,get传参
+			// axios.get('http://localhost:3000/axios?id=68').then(ret=>{
+			// 	console.log(ret.data);
+			// })
+			//Restful,get传参
+			// axios.get('http://localhost:3000/axios/68').then(ret=>{
+			// 	console.log(ret.data);
+			// })
+			axios.get('http://localhost:3000/axios',{
+				params:{
+					id:54564
+				}
+			})
+			.then(ret=>{
+				console.log(ret.data);
+			})
+		</script>
+	</body>
+</html>
